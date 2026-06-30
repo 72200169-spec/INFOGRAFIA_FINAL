@@ -129,7 +129,7 @@ with col4:
     st.markdown('''
         <div class="author-card">
             <div style="font-size: 2.5rem; margin-bottom: 0.8rem;">👨‍💻</div>
-            <div style="font-weight: 700; font-size: 1.05rem;">Loaiza Martinez Carlin Eduardo</div>
+            <div style="font-weight: 700; font-size: 1.05rem;">Loaiza Martinez Carlos Eduardo</div>
         </div>
     ''', unsafe_allow_html=True)
 
@@ -169,6 +169,37 @@ with st.expander("🖼️ Ver Diagrama de Confusión del Modelo", expanded=False
 with st.expander("📁 Ver Datasets Utilizados", expanded=False):
     st.markdown('<div class="dataset-link"><a href="https://universe.roboflow.com/sliit-gvlap/acanthosis-nigricans-detection-xempk" target="_blank" style="color: #1a237e;">Dataset 1: Acanthosis Nigricans Detection - Roboflow</a></div>', unsafe_allow_html=True)
     st.markdown('<div class="dataset-link"><a href="https://universe.roboflow.com/naia/acantosis-nigricans/dataset/7" target="_blank" style="color: #1a237e;">Dataset 2: Acantosis Nigricans - Roboflow</a></div>', unsafe_allow_html=True)
+
+with st.expander("⚙️ Proceso de Entrenamiento del Modelo", expanded=False):
+    st.markdown('<div class="card">', unsafe_allow_html=True)
+    st.write("""
+    El entrenamiento del modelo se realizó utilizando **Google Colab**, aprovechando los datasets previamente mencionados. 
+    A continuación se muestra el proceso paso a paso:
+    """)
+    
+    # Load and display training images in order
+    training_images = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg"]
+    captions = [
+        "Paso 1: Inicio del entorno de Colab",
+        "Paso 2: Carga y preparación de los datasets",
+        "Paso 3: Configuración del modelo de IA",
+        "Paso 4: Entrenamiento del modelo",
+        "Paso 5: Evaluación de métricas",
+        "Paso 6: Resultados y exportación del modelo"
+    ]
+    
+    for img_path, caption in zip(training_images, captions):
+        try:
+            img = Image.open(img_path)
+            st.image(img, caption=caption, use_container_width=True)
+        except Exception as e:
+            st.warning(f"No se pudo cargar la imagen {img_path}")
+    
+    st.write("""
+    Este proceso nos permitió desarrollar un modelo accesible para los usuarios, con el objetivo de ayudar a conocer su estado de salud
+    de forma temprana a través del análisis de la piel para detectar Acantosis Nigricans y prevenir la diabetes tipo 2.
+    """)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 with st.expander("🌐 Ver Sitio Web del Proyecto", expanded=True):
     st.markdown("""
