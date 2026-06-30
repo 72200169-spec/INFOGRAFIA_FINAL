@@ -105,6 +105,56 @@ st.markdown("""
             z-index: 100;
             position: relative;
         }
+        .zoom-img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .zoom-img {
+            max-width: 60%;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: zoom-in;
+        }
+        .zoom-img:hover {
+            transform: scale(1.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            z-index: 100;
+            position: relative;
+        }
+        .interactive-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #f5f0ff 100%);
+            padding: 1.5rem;
+            border-radius: 0.8rem;
+            margin: 1rem 0;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .interactive-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .interactive-card h4 {
+            color: #1a237e;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        .interactive-card p, .interactive-card li {
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .problem-statement {
+            background: linear-gradient(135deg, #ffebee 0%, #fff3e0 100%);
+            padding: 1.8rem;
+            border-radius: 1rem;
+            border-left: 6px solid #f44336;
+            margin-bottom: 1.5rem;
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.8rem;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -156,12 +206,66 @@ st.markdown("<br><br>", unsafe_allow_html=True)
 
 with st.expander("📋 Ver Descripción del Proyecto", expanded=True):
     st.markdown('<div class="card">', unsafe_allow_html=True)
-    st.write("""
-    Este proyecto consiste en un modelo de Inteligencia Artificial entrenado para detectar **Acantosis Nigricans**, 
-    una condición de la piel fuertemente asociada con la resistencia a la insulina y el riesgo de desarrollar diabetes tipo 2.
+    st.markdown("""
+    <div class="problem-statement">
+        <h3 style="color: #d32f2f;">⚠️ El Problema de la Diabetes</h3>
+        <p>El proyecto aborda la grave problemática de la diabetes como uno de los principales desafíos de salud pública mundial. El peligro principal radica en que muchas personas viven con la enfermedad durante años sin ser diagnosticadas, lo que retrasa tratamientos que podrían prevenir complicaciones graves. Aunque los análisis de sangre tradicionales son precisos, requieren tiempo, dinero e infraestructura de laboratorio, lo que limita el acceso a chequeos preventivos masivos.</p>
+    </div>
+    """, unsafe_allow_html=True)
     
-    El sistema analiza imágenes de la piel y proporciona resultados de diagnóstico junto con recomendaciones médicas importantes.
-    """)
+    st.subheader("✨ Propuesta del Proyecto")
+    st.markdown("""
+    <p>El equipo desarrolla un sistema de software híbrido que utiliza Inteligencia Artificial para calcular la probabilidad de riesgo de diabetes en usuarios mediante:</p>
+    """, unsafe_allow_html=True)
+    
+    col_a, col_b = st.columns(2)
+    with col_a:
+        st.markdown("""
+        <div class="interactive-card">
+            <div class="feature-icon">👁️</div>
+            <h4>Módulo de Visión por Computadora</h4>
+            <p>Analiza imágenes de la piel para detectar patrones visuales asociados con la diabetes (como manchas oscuras en pliegues corporales, indicativas de <strong>acantosis nigricans</strong>, un marcador de resistencia a la insulina).</p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_b:
+        st.markdown("""
+        <div class="interactive-card">
+            <div class="feature-icon">📊</div>
+            <h4>Módulo de Datos Estructurados</h4>
+            <p>Procesa respuestas de una encuesta digital que recopila información sobre:</p>
+            <ul style="margin-top: 0.5rem;">
+                <li>Antecedentes familiares</li>
+                <li>Hábitos alimenticios</li>
+                <li>Edad</li>
+                <li>Nivel de actividad física</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    st.subheader("🔧 Enfoque Técnico")
+    tech_cols = st.columns(4)
+    tech_info = [
+        {"icon": "🧠", "title": "Deep Learning", "desc": "Para el análisis automatizado de imágenes médicas"},
+        {"icon": "🖥️", "title": "Interfaz de Usuario", "desc": "Funcional para cargar imágenes y visualizar diagnósticos"},
+        {"icon": "💾", "title": "Base de Datos", "desc": "Para gestionar usuarios y registros de salud"},
+        {"icon": "✅", "title": "Validación", "desc": "Mecanismos de gestión de errores para estabilidad"}
+    ]
+    for i, col in enumerate(tech_cols):
+        with col:
+            st.markdown(f"""
+            <div class="interactive-card">
+                <div class="feature-icon">{tech_info[i]['icon']}</div>
+                <h4>{tech_info[i]['title']}</h4>
+                <p style="font-size: 0.9rem;">{tech_info[i]['desc']}</p>
+            </div>
+            """, unsafe_allow_html=True)
+    
+    st.subheader("🌟 Impacto Esperado")
+    st.markdown("""
+    <div class="interactive-card" style="background: linear-gradient(135deg, #e8f5e9 0%, #e3f2fd 100%); border-left: 5px solid #4caf50;">
+        <p>El proyecto demuestra cómo el desarrollo de software inteligente puede integrarse al sector salud, creando soluciones accesibles que funcionan como un <strong>sistema de alerta temprana</strong>, motivando a las personas a buscar atención médica oportuna antes de que la enfermedad avance.</p>
+    </div>
+    """, unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
 with st.expander("📊 Ver Resultados de Análisis de Piel", expanded=True):
@@ -178,10 +282,22 @@ with st.expander("📊 Ver Resultados de Análisis de Piel", expanded=True):
     """)
     st.markdown('</div>', unsafe_allow_html=True)
 
+def img_to_base64(img):
+    """Convert PIL Image to base64 string"""
+    buffered = BytesIO()
+    img.save(buffered, format="JPEG")
+    return base64.b64encode(buffered.getvalue()).decode()
+
 with st.expander("🖼️ Ver Diagrama de Confusión del Modelo", expanded=False):
     try:
         confusion_img = Image.open("CUADRO_CONFUSION.jpeg")
-        st.image(confusion_img, caption="Diagrama de Confusión del Modelo de IA", use_container_width=True)
+        img_base64 = img_to_base64(confusion_img)
+        st.markdown("""
+        <div class="zoom-img-container">
+            <img src="data:image/jpeg;base64,%s" class="zoom-img" alt="Diagrama de Confusión del Modelo de IA">
+            <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #37474f;">Diagrama de Confusión del Modelo de IA</p>
+        </div>
+        """ % img_base64, unsafe_allow_html=True)
     except Exception as e:
         st.warning("No se pudo cargar la imagen del diagrama de confusión.")
 
@@ -199,27 +315,21 @@ with st.expander("⚙️ Proceso de Entrenamiento del Modelo", expanded=False):
     # Load and display training images in order
     training_images = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg"]
     captions = [
-        "Paso 1: Inicio del entorno de Colab",
-        "Paso 2: Carga y preparación de los datasets",
-        "Paso 3: Configuración del modelo de IA",
-        "Paso 4: Entrenamiento del modelo",
-        "Paso 5: Evaluación de métricas",
-        "Paso 6: Resultados y exportación del modelo",
-        "Paso 7: Pruebas iniciales del modelo",
-        "Paso 8: Validación con datos reales",
-        "Paso 9: Ajuste de hiperparámetros",
-        "Paso 10: Evaluación final",
-        "Paso 11: Exportación del modelo entrenado",
-        "Paso 12: Integración con la aplicación web",
-        "Paso 13: Despliegue final del sistema"
+        "Paso 1: ",
+        "Paso 2: ",
+        "Paso 3: ",
+        "Paso 4: ",
+        "Paso 5: ",
+        "Paso 6: ",
+        "Paso 7: ",
+        "Paso 8: ",
+        "Paso 9: ",
+        "Paso 10: ",
+        "Paso 11: ",
+        "Paso 12: ",
+        "Paso 13: "
     ]
     
-    def img_to_base64(img):
-        """Convert PIL Image to base64 string"""
-        buffered = BytesIO()
-        img.save(buffered, format="JPEG")
-        return base64.b64encode(buffered.getvalue()).decode()
-
     for img_path, caption in zip(training_images, captions):
         try:
             img = Image.open(img_path)
@@ -232,11 +342,6 @@ with st.expander("⚙️ Proceso de Entrenamiento del Modelo", expanded=False):
             """, unsafe_allow_html=True)
         except Exception as e:
             st.warning(f"No se pudo cargar la imagen {img_path}")
-    
-    st.write("""
-    Este proceso nos permitió desarrollar un modelo accesible para los usuarios, con el objetivo de ayudar a conocer su estado de salud
-    de forma temprana a través del análisis de la piel para detectar Acantosis Nigricans y prevenir la diabetes tipo 2.
-    """)
     st.markdown('</div>', unsafe_allow_html=True)
 
 with st.expander("🌐 Ver Sitio Web del Proyecto", expanded=True):
