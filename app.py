@@ -1,5 +1,7 @@
 import streamlit as st
 from PIL import Image
+import base64
+from io import BytesIO
 
 st.set_page_config(
     page_title="Detector de Diabetes - Proyecto IA",
@@ -85,6 +87,23 @@ st.markdown("""
         .title-icon {
             animation: pulse 2s ease-in-out infinite;
             display: inline-block;
+        }
+        .training-img-container {
+            text-align: center;
+            margin: 1rem 0;
+        }
+        .training-img {
+            max-width: 60%;
+            border-radius: 0.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: zoom-in;
+        }
+        .training-img:hover {
+            transform: scale(1.3);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            z-index: 100;
+            position: relative;
         }
     </style>
 """, unsafe_allow_html=True)
@@ -195,10 +214,22 @@ with st.expander("⚙️ Proceso de Entrenamiento del Modelo", expanded=False):
         "Paso 13: Despliegue final del sistema"
     ]
     
+    def img_to_base64(img):
+        """Convert PIL Image to base64 string"""
+        buffered = BytesIO()
+        img.save(buffered, format="JPEG")
+        return base64.b64encode(buffered.getvalue()).decode()
+
     for img_path, caption in zip(training_images, captions):
         try:
             img = Image.open(img_path)
-            st.image(img, caption=caption, use_container_width=True)
+            img_base64 = img_to_base64(img)
+            st.markdown(f"""
+            <div class="training-img-container">
+                <img src="data:image/jpeg;base64,{img_base64}" class="training-img" alt="{caption}">
+                <p style="margin-top: 0.5rem; font-size: 0.95rem; color: #37474f;">{caption}</p>
+            </div>
+            """, unsafe_allow_html=True)
         except Exception as e:
             st.warning(f"No se pudo cargar la imagen {img_path}")
     
