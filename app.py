@@ -178,14 +178,21 @@ with st.expander("⚙️ Proceso de Entrenamiento del Modelo", expanded=False):
     """)
     
     # Load and display training images in order
-    training_images = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg"]
+    training_images = ["1.jpeg", "2.jpeg", "3.jpeg", "4.jpeg", "5.jpeg", "6.jpeg", "7.jpeg", "8.jpeg", "9.jpeg", "10.jpeg", "11.jpeg", "12.jpeg", "13.jpeg"]
     captions = [
         "Paso 1: Inicio del entorno de Colab",
         "Paso 2: Carga y preparación de los datasets",
         "Paso 3: Configuración del modelo de IA",
         "Paso 4: Entrenamiento del modelo",
         "Paso 5: Evaluación de métricas",
-        "Paso 6: Resultados y exportación del modelo"
+        "Paso 6: Resultados y exportación del modelo",
+        "Paso 7: Pruebas iniciales del modelo",
+        "Paso 8: Validación con datos reales",
+        "Paso 9: Ajuste de hiperparámetros",
+        "Paso 10: Evaluación final",
+        "Paso 11: Exportación del modelo entrenado",
+        "Paso 12: Integración con la aplicación web",
+        "Paso 13: Despliegue final del sistema"
     ]
     
     for img_path, caption in zip(training_images, captions):
